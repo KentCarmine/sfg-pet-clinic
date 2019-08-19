@@ -6,7 +6,7 @@ import java.util.*;
 
 public abstract class AbstractMapService<T extends BaseEntity, Y extends Long> {
 
-//    protected Map<Y, T> map = new HashMap<>();
+    //    protected Map<Y, T> map = new HashMap<>();
     protected Map<Long, T> map;
 
     public AbstractMapService() {
@@ -21,7 +21,7 @@ public abstract class AbstractMapService<T extends BaseEntity, Y extends Long> {
         return map.get(id);
     }
 
-    public T save(T object){
+    public T save(T object) {
         if (object != null) {
             if (object.getId() == null) {
                 object.setId(getNextId());
@@ -35,11 +35,11 @@ public abstract class AbstractMapService<T extends BaseEntity, Y extends Long> {
         return object;
     }
 
-    public void deleteById(Y id){
+    public void deleteById(Y id) {
         map.remove(id);
     }
 
-    public void delete(T object){
+    public void delete(T object) {
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
@@ -50,7 +50,7 @@ public abstract class AbstractMapService<T extends BaseEntity, Y extends Long> {
 //        } catch (NoSuchElementException e) {
 //            nextId = 1L;
 //        }
-        
+
         Long nextId = null;
         if (map.keySet().isEmpty()) {
             nextId = 1L;
